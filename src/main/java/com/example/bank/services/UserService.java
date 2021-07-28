@@ -24,11 +24,11 @@ public class UserService {
     }
 
     public void addNewUser(User user) {
-        Optional<User> userOptional = userRepository.findUserByEmail(user.getEmail());
+        User userOptional = userRepository.findUserByEmail(user.getEmail());
 
-        if(userOptional.isPresent()) {
+        /*if(userOptional.isPresent()) {
             throw new IllegalStateException("Email já utilizado");
-        }
+        }*/
         userRepository.save(user);
     }
 
@@ -46,15 +46,21 @@ public class UserService {
                 .orElseThrow(() -> new IllegalStateException("Não existe usuário com o id " + userId));
 
         if(email != null && email.length() > 0 && !Objects.equals(user.getEmail(),email)) {
-            Optional<User> userOptional = userRepository.findUserByEmail(user.getEmail());
-            if(userOptional.isPresent()) {
+            User userOptional = userRepository.findUserByEmail(user.getEmail());
+
+            /*if(userOptional.isPresent()) {
                 throw new IllegalStateException("Email já utilizado");
-            }
+            }*/
             user.setEmail(email);
         }
 
         if(name != null && name.length() > 0 && !Objects.equals(user.getName(),name)) {
             user.setName(name);
         }
+    }
+
+    @Transactional
+    public User findUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
     }
 }

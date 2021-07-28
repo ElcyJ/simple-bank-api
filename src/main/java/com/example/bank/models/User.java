@@ -1,17 +1,24 @@
 package com.example.bank.models;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.management.relation.Role;
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Table(name = "bank_user")
 public class User {
     @Id
-    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
     private String email;
     private String password;
     private String name;
+
 
     public User() {
     }

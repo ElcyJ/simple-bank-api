@@ -1,27 +1,27 @@
 package com.example.bank.models;
 
 public class AuthRequest {
-    private String userName;
+    private String username;
     private String password;
 
     public AuthRequest() {
     }
 
-    public AuthRequest(String userName, String password) {
-        this.userName = userName;
+    public AuthRequest(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return this.username;
     }
 
-    public void setUserName(String email) {
-        this.userName = email;
+    public void setUserName(String userName) {
+        this.username = userName;
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
