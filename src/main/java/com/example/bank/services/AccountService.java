@@ -4,6 +4,7 @@ import com.example.bank.models.Account;
 import com.example.bank.models.User;
 import com.example.bank.repositories.AccountRepository;
 import com.example.bank.repositories.UserRepository;
+import com.example.bank.utils.JWTUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +19,11 @@ public class AccountService {
     }
 
     public void addNewAccount(Account account) {
-        Account accountOptional = accountRepository.findAccountByNumber(account.getNumber());
+        Account numberExists = accountRepository.existsByNumber(account.getNumber());
 
-        /*if(userOptional.isPresent()) {
-            throw new IllegalStateException("Email já utilizado");
-        }*/
+        if(numberExists != null) {
+            throw new IllegalStateException("Numero de conta já utilizado");
+        }
         accountRepository.save(account);
     }
 }

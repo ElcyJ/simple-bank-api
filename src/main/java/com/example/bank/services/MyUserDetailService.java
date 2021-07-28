@@ -24,8 +24,15 @@ public class MyUserDetailService implements UserDetailsService {
             throw new UsernameNotFoundException("Usuario não encontrado");
         }
         return new MyUserDetails(user);
-        //return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
-                //new ArrayList<>());
+
+    }
+
+    public UserDetails loadUserByPassword(String password) throws UsernameNotFoundException {
+        User user = userRepository.findUserByPassword(password);
+        if(user == null) {
+            throw new UsernameNotFoundException("Usuario não encontrado");
+        }
+        return new MyUserDetails(user);
     }
 
 }
