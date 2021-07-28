@@ -24,11 +24,11 @@ public class UserService {
     }
 
     public void addNewUser(User user) {
-        User userOptional = userRepository.findUserByEmail(user.getEmail());
+        User emailExists =  userRepository.existsByEmail(user.getEmail());
 
-        /*if(userOptional.isPresent()) {
+        if(emailExists != null) {
             throw new IllegalStateException("Email já utilizado");
-        }*/
+        }
         userRepository.save(user);
     }
 
@@ -46,11 +46,11 @@ public class UserService {
                 .orElseThrow(() -> new IllegalStateException("Não existe usuário com o id " + userId));
 
         if(email != null && email.length() > 0 && !Objects.equals(user.getEmail(),email)) {
-            User userOptional = userRepository.findUserByEmail(user.getEmail());
+            User emailExists =  userRepository.existsByEmail(user.getEmail());
 
-            /*if(userOptional.isPresent()) {
+            if(emailExists != null) {
                 throw new IllegalStateException("Email já utilizado");
-            }*/
+            }
             user.setEmail(email);
         }
 

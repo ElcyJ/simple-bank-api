@@ -1,14 +1,16 @@
 package com.example.bank.models;
 
 public class AuthResponse {
-    public AuthResponse(String jwt) {
-        this.jwt = jwt;
+    private final String token;
+    private String name;
+    private String email;
+
+    public AuthResponse(String token) {
+        this.token = token;
     }
 
     public String getJwt() {
-        return jwt;
+        return token;
     }
-
-    private final String jwt;
 
 }

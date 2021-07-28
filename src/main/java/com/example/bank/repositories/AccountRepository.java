@@ -1,17 +1,16 @@
 package com.example.bank.repositories;
 
+import com.example.bank.models.Account;
 import com.example.bank.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    User findUserByEmail(String email);
+public interface AccountRepository extends JpaRepository<Account, Long> {
+    Account findAccountByNumber(String username);
 
-    @Query("SELECT u FROM User u WHERE u.email = :email")
-    User existsByEmail(@Param("email") String email);
+    @Query("SELECT u FROM Account u WHERE u.number = :number")
+    Account existsByNumber(@Param("number") String number);
 }

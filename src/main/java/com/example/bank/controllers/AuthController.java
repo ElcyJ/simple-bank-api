@@ -28,21 +28,15 @@ public class AuthController {
 
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthToken(@RequestBody AuthRequest authRequest) throws Exception{
-        /*try {
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(authRequest.getUserName(), authRequest.getPassword())
-            );
-        } catch (BadCredentialsException e) {
-            throw new Exception("Email ou senha incorreto", e);
-            }*/
+
         authenticate(authRequest.getUsername(), authRequest.getPassword());
 
         final UserDetails userDetails = myUserDetailService
                 .loadUserByUsername(authRequest.getUsername());
 
-        final String jwt = jwtTokenUtil.generateToken(userDetails);
+        final String token = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new AuthResponse(jwt));
+        return ResponseEntity.ok(new AuthResponse(token));
     }
 
     private void authenticate(String username, String password) throws Exception {
