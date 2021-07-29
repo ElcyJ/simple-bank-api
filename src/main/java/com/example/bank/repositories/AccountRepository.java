@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
-    Account findAccountByNumber(String username);
+    Account findAccountByNumber(String number);
 
     @Query("SELECT u FROM Account u WHERE u.number = :number")
     Account existsByNumber(@Param("number") String number);
