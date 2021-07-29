@@ -26,4 +26,8 @@ public class AccountService {
         }
         accountRepository.save(account);
     }
+
+    public Account findAccountByNumber(String number) {
+        return accountRepository.findAccountByNumber(number);
+    }
 }

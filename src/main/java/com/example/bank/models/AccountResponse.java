@@ -5,6 +5,17 @@ public class AccountResponse {
     private double balance;
     private User user;
 
+    public AccountResponse(String number, double balance, User user) {
+        this.number = number;
+        this.balance = balance;
+        this.user = user;
+    }
+
+    public AccountResponse(String number, double balance) {
+        this.number = number;
+        this.balance = balance;
+    }
+
     public String getNumber() {
         return number;
     }
@@ -29,9 +40,5 @@ public class AccountResponse {
         this.user = user;
     }
 
-    public AccountResponse(String number, double balance, User user) {
-        this.number = number;
-        this.balance = balance;
-        this.user = user;
-    }
+
 }

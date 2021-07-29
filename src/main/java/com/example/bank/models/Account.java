@@ -18,9 +18,8 @@ public class Account {
     public Account() {
     }
 
-    public Account(String number, double balance) {
+    public Account(String number) {
         this.number = number;
-        this.balance = balance;
     }
 
     public Account(String number, double balance, User user) {
